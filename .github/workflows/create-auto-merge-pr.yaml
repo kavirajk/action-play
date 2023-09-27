@@ -1,4 +1,8 @@
 name: Create and Auto merge PR
+on:
+  push:
+  workflow_dispatch:
+
 jobs:
   create_auto_merge_pr:
     name: create-auto-merge-pr
