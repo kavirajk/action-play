@@ -21,9 +21,9 @@ jobs:
 
           labels: github-action, automatic
           branch: automerge-play
-        - name: enable auto merge
-          # Doesn't merge, but only enable "auto-merge"
-          run: gh pr merge --auto --merge "$PR_URL"
+      - name: enable auto merge
+        # Doesn't merge, but only enable "auto-merge"
+        run: gh pr merge --auto --merge "$PR_URL"
 
-        - name: approve pr
-          run: gh pr review "$PR_URL" --approve -b "**Approving** vendoring Loki"
+      - name: approve pr
+        run: gh pr review "$PR_URL" --approve -b "**Approving** vendoring Loki"
