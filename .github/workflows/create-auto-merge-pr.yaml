@@ -1,0 +1,29 @@
+name: Create and Auto merge PR
+jobs:
+  create_auto_merge_pr:
+    name: create-auto-merge-pr
+    runs-on: ubuntu-latest
+    env:
+      PR_URL: ${{ github.event.pull_request.html_url }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: create-pr
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          delete-branch: true
+          branch-suffix: short-commit-hash
+          title: "Create random PR"
+          body: |
+            ## What is it?
+
+            Just Kavi is playing with Github Action and Automerge features
+
+          labels: github-action, automatic
+          branch: automerge-play
+        - name: enable auto merge
+          # Doesn't merge, but only enable "auto-merge"
+          run: gh pr merge --auto --merge "$PR_URL"
+
+        - name: approve pr
+          run: gh pr review "$PR_URL" --approve -b "**Approving** vendoring Loki"
