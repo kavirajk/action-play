@@ -27,7 +27,11 @@ jobs:
           branch: automerge-play
       - name: enable auto merge
         # Doesn't merge, but only enable "auto-merge"
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: approve pr
-        run: gh pr review "$PR_URL" --approve -b "**Approving** vendoring Loki"
+        run: gh pr review "${{ steps.cpr.outputs.pull-request-number }}" --approve -b "**Approving** vendoring Loki"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
