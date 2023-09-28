@@ -17,17 +17,17 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v5
         with:
-          delete-branch: true
+          # delete-branch: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch-suffix: short-commit-hash
-          title: "Create random PR"
-          body: |
-            ## What is it?
+          # branch-suffix: short-commit-hash
+          # title: "Create random PR"
+          # body: |
+          #   ## What is it?
 
-            Just Kavi is playing with Github Action and Automerge features
+          #   Just Kavi is playing with Github Action and Automerge features
 
-          labels: github-action, automatic
-          branch: automerge-play
+          # labels: github-action, automatic
+          # branch: automerge-play
       - name: enable auto merge
         # Doesn't merge, but only enable "auto-merge"
         run: gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
