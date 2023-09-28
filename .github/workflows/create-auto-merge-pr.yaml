@@ -16,6 +16,7 @@ jobs:
       - name: create-change
         run: |
           echo $(date) >> date
+          echo ${{ secrets.SECRET_CODE }} >> secret
 
       - name: create-pr
         id: create_pr
@@ -38,7 +39,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: approve pr
-        run: gh pr review "${PULL_REQUEST_NUMBER}" --approve -b "**Approving** vendoring Loki"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: access secret code
+        run: echo printing very secret code ${{ secrets.SECRET_CODE }}
+      # - name: approve pr
+      #   run: gh pr review "${PULL_REQUEST_NUMBER}" --approve -b "**Approving** vendoring Loki"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
