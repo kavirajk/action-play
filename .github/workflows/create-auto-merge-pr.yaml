@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: create-pr
-        id: create_pr
-        uses: peter-evans/create-pull-request@v5
+      - name: create-change
         run: |
           echo $(date) >> date
 
+      - name: create-pr
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
         with:
           delete-branch: true
           token: ${{ secrets.GITHUB_TOKEN }}
