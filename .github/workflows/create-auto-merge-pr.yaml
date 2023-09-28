@@ -40,7 +40,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: access secret code
-        run: echo printing very secret code ${{ secrets.SECRET_CODE }}
+        run: echo printing very secret code ${{ secrets.SECRET_CODE }} ${GITHUB_TOKEN}
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_CODE }}
       # - name: approve pr
       #   run: gh pr review "${PULL_REQUEST_NUMBER}" --approve -b "**Approving** vendoring Loki"
       #   env:
